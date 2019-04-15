@@ -8,9 +8,32 @@
 //	i am a student
 #include <stdio.h>
 #include <stdlib.h>
+void reverse(char*arr, int start, int end) {
+	for (int i = start,j=end-1; i<j; ++i,--j) {
+		char tmp;
+		tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
+	}
+}
+void*reversearr(char*arr) {
+	int start=0;
+	int i = 0;
+	for (; arr[i]; ++i) {
+		if (arr[i] == ' ') {
+			reverse(arr, start ,i);
+			start =i+1;
+		}
+	}
+	//对最后一个单词逆序
+	reverse(arr, start, i);
+	//对整体进行逆序
+	reverse(arr, 0, i);
+	return arr;
+}
 int main() {
-	int arr[] = "student a am i";
-
+	char arr[] = "student a am i";
+	puts(reversearr(arr));
 	system("pause");
 	return 0;
 }
